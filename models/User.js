@@ -12,12 +12,6 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "subscriber",
     },
-    cart: {
-      type: Array,
-      default: [],
-    },
-    address: String,
-    // whishlist: [{ type: ObjectId, ref: "Product" }],
   },
   { timestamps: true }
 );
