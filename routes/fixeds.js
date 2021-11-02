@@ -15,8 +15,8 @@ const {
 } = require("../controllers/fixedExpenses");
 
 // endpoints routes
-router.post("/fixeds", list);
-router.post("/fixed", create);
+router.post("/fixeds", list, authCheck);
+router.post("/fixed", create, authCheck);
 router.get("/fixed/:slug", read);
 router.put("/fixed/:slug", update);
 router.delete("/fixed/:slug", remove);

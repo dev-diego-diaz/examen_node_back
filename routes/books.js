@@ -9,10 +9,10 @@ const { authCheck, adminCheck } = require("../middlewares/auth");
 const { list, create, read, update, remove } = require("../controllers/books");
 
 // endpoints routes
-router.post("/books", list);
-router.post("/book", create);
-router.get("/book/:slug", read);
-router.put("/book/:slug", update);
-router.delete("/book/:slug", remove);
+router.post("/books", authCheck, list);
+router.post("/book", authCheck, adminCheck, create);
+router.get("/book/:slug", authCheck, read);
+router.put("/book/:slug", authCheck, update);
+router.delete("/book/:slug", authCheck, adminCheck, remove);
 
 module.exports = router;

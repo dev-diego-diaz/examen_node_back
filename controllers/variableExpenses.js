@@ -9,6 +9,7 @@ exports.list = async (req, res) => {
 exports.create = async (req, res) => {
   try {
     const {
+      id_book,
       detail,
       date_purchase,
       quotas,
@@ -20,6 +21,7 @@ exports.create = async (req, res) => {
 
     res.json(
       await new Variable({
+        id_book,
         detail,
         date_purchase,
         quotas,

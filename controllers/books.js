@@ -1,4 +1,7 @@
 const Book = require("../models/Book");
+const Fixed = require("../models/FixedExpense");
+const Variable = require("../models/VariableExpense");
+const Saving = require("../models/Saving");
 const slugify = require("slugify");
 
 // List Books
@@ -25,7 +28,22 @@ exports.create = async (req, res) => {
 // Find one book
 exports.read = async (req, res) => {
   let theBook = await Book.findOne({ slug: req.params.slug }).exec();
-  res.json(theBook);
+  let theFixed = await Fixed.find({ id_book: theBook._id })
+    .sort({ createdAt: -1 })
+    .exec();
+  let theVariable = await Variable.find({ id_book: theBook._id })
+    .sort({ createdAt: -1 })
+    .exec();
+  let theSaving = await Saving.find({ id_book: theBook._id })
+    .sort({ createdAt: -1 })
+    .exec();
+
+  res.json({
+    theBook,
+    theFixed,
+    theVariable,
+    theSaving,
+  });
 };
 
 // Updaye Books
